@@ -73,7 +73,25 @@ func injectString(path string, text string) {
 
 func ree(bashProcs []string) {
 	for _, pid := range bashProcs {
-		injectString(pid, "reeeeeeeeee")
+		injectString(pid, "REEEEEEEEEEEEEEEEEEEEEEEEEE")
+	}
+}
+
+func fb(bashProcs []string) {
+	for _, pid := range bashProcs {
+		injectString(pid, "Move slow and repair things.")
+	}
+}
+
+func bees(bashProcs []string) {
+	for _, pid := range bashProcs {
+		injectString(pid, "bzzzzzzzzz I'm a bee stuck in your terminal bzzzz bzzzz")
+	}
+}
+
+func custom(bashProcs []string, text string) {
+	for _, pid := range bashProcs {
+		injectString(pid, text)
 	}
 }
 
@@ -151,6 +169,17 @@ func main() {
 	}
 	if arg == "-smashmouth" {
 		smashMouth(bashProcs)
+	}
+	if arg == "-fb" {
+		fb(bashProcs)
+	}
+	if arg == "-bees" {
+		bees(bashProcs)
+	}
+	if arg == "-custom" {
+		st := os.Args[2]
+		custom(bashProcs, st)
+
 	}
 
 }
