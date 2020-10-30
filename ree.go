@@ -161,6 +161,50 @@ func smashMouth(bashProcs []string) {
 
 }
 
+func getSpooky(bashProcs []string) {
+	sleeptime := 30
+	if len(os.Args) == 3 {
+		sleeptime, _ = strconv.Atoi(os.Args[2])
+	}
+	skeletons := []string{"Spooky scary skeletons\n",
+		"Send shivers down your spine\n",
+		"Shrieking skulls will shock your soul\n",
+		"Seal your doom tonight\n",
+		"Spooky scary skeletons\n",
+		"Speak with such a screech\n",
+		"You'll shake and shudder in surprise\n",
+		"When you hear these zombies shriek\n",
+		"We're so sorry skeletons\n",
+		"You're so misunderstood\n",
+		"You only want to socialize\n",
+		"But I don't think we should\n",
+		"Cause spooky scary skeletons",
+		"Shout startling shrilly screams\n",
+		"They'll sneak from their sarcophagus\n",
+		"And just won't leave you be\n",
+		"Spirits supernatural\n",
+		"Are shy whats all the fuss\n",
+		"But bags of bones seem so unsafe\n",
+		"It's semi-serious!\n",
+		"Spooky scary skeletons\n",
+		"Are silly all the same\n",
+		"They'll smile and scrabble slowly by\n",
+		"And drive you so insane\n",
+		"Sticks and stones will break your bones\n",
+		"They seldom let you snooze\n",
+		"Spooky scary skeletons\n",
+		"Will wake you with a boo!\n",
+	}
+
+	for _, lyric := range skeletons {
+		for _, pid := range bashProcs {
+			injectString(pid, lyric)
+		}
+		time.Sleep(time.Duration(sleeptime) * time.Second)
+	}
+
+}
+
 func main() {
 	arg := os.Args[1]
 	bashProcs := scrapeProc()
@@ -175,6 +219,9 @@ func main() {
 	}
 	if arg == "-bees" {
 		bees(bashProcs)
+	}
+	if arg == "-spooky" {
+		getSpooky(bashProcs)
 	}
 	if arg == "-custom" {
 		st := os.Args[2]
